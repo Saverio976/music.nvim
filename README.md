@@ -27,6 +27,19 @@ example with a youtube playlist
 
 ## installation
 
+`this plugin require mpv executable installed and and discoverable in your PATH`
+`pacman -S mpv`
+`apt install mpv`
+
+- with packer
+
+```lua
+use {
+	'Saverio976/music.nvim',
+	requires = { 'voldikss/vim-floaterm' }
+}
+```
+
 ## command
 
 - PlayMusic (path of file/folder)|(url link)
@@ -72,3 +85,7 @@ go to next music
 - `<`
 
 go to last music
+
+## thanks
+
+repo archi: https://github.com/RishabhRD/nvim-cheat.sh

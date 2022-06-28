@@ -40,6 +40,8 @@ use {
 }
 ```
 
+you can look at https://github.com/rcarriga/nvim-notify for better notification (default is an echo)
+
 ## command
 
 - PlayMusic (path of file/folder)|(url link)

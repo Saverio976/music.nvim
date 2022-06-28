@@ -18,6 +18,9 @@ example with a youtube playlist
 
 ![youtube_video_playing](/assets/youtube_playlist_playing.png)
 
+
+## installation
+
 ## command
 
 - PlayMusic (path of file/folder)|(url link)
@@ -25,12 +28,14 @@ example with a youtube playlist
 open a terminal and run mpv to get sound + video if video
 
 and there is a function for lua:
-
+```lua
+url = "https://youtu.be/1DoI5WTjd3w"
 PlayMusicUrl(url)
+```
 
 ## mpv interraction
 
-- p
+- `p`
 
 pause music
 
@@ -54,10 +59,10 @@ go backaward/forward
 
 pass to the next music (or stop music if not a playlist)
 
-- >
+- `>`
 
 go to next music
 
-- <
+- `<`
 
 go to last music

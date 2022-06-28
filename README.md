@@ -7,6 +7,9 @@ play music in nvim
 this can also be a video
 
 ![file_audio](/assets/file_audio.png)
+```vim
+:PlayMusic ~/Music/XYLO_-_Yes_No.webm
+```
 
 ![file_audio_playing](/assets/file_audio_playing.png)
 
@@ -15,6 +18,9 @@ this can also be a video
 example with a youtube playlist
 
 ![youtube_video](/assets/youtube_playlist.png)
+```vim
+:PlayMusic https://youtube.com/playlist?list=PLDrdeYmfX5rvQb5FKb5flpGVcXkRb2KK3
+```
 
 ![youtube_video_playing](/assets/youtube_playlist_playing.png)
 

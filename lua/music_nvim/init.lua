@@ -31,7 +31,10 @@ local function get_true_link(url)
 	return url
 end
 
-function PlayMusicUrl(url)
+local M = {}
+M.__index = M
+
+function M.PlayMusicUrl(url)
 	url = url or ""
 	url = get_true_link(url)
 	if check_url_correct(url) == false then
@@ -44,6 +47,8 @@ function PlayMusicUrl(url)
 	vim.cmd(floaterm_command .. " " .. mpv_command)
 end
 
-function PlayMusic()
-	vim.ui.input("enter url (could be youtube music/playlist)", play_music_url)
+function M.PlayMusic()
+	vim.ui.input("enter url (could be youtube music/playlist)", M.play_music_url)
 end
+
+return M

@@ -47,6 +47,3 @@ end
 function PlayMusic()
 	vim.ui.input("enter url (could be youtube music/playlist)", play_music_url)
 end
-
--- vim.cmd([[command! PlayMusic ]])
-vim.cmd([[command! -nargs=1 -complete=file PlayMusic lua PlayMusicUrl(<args>)]])

@@ -30,7 +30,7 @@ open a terminal and run mpv to get sound + video if video
 and there is a function for lua:
 ```lua
 url = "https://youtu.be/1DoI5WTjd3w"
-PlayMusicUrl(url)
+require('music_nvim').PlayMusicUrl(url)
 ```
 
 ## mpv interraction

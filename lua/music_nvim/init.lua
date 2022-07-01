@@ -45,16 +45,20 @@ local M = {}
 M.__index = M
 
 function M.music_nvim_install()
-	if os.execute([[mpv --version]]) ~= true then
-		print("MPV is not installed; please install it")
-		return
+	if vim.fn.executable('mpv') ~= 1 then
+		error("'mpv' is not installed; please install it")
 	end
-	local http = require("socket.http")
-	local body, code = http.request("https://github.com/lwilletts/mpvc/blob/master/mpvc")
-	if not body then error(code) end
-	local f = assert(io.open(mpvc_path, 'wb'))
-	f:write(body)
-	f:close()
+	if vim.fn.executable('socat') ~= 1 then
+		error("'socat' is not installed; please install it")
+	end
+	if file_exists(mpvc_path) == false then
+		local http = require("socket.http")
+		local body, code = http.request("https://github.com/lwilletts/mpvc/blob/master/mpvc")
+		if not body then error(code) end
+		local f = assert(io.open(mpvc_path, 'wb'))
+		f:write(body)
+		f:close()
+	end
 end
 
 function M.PlayMusicUrl(url)
@@ -96,6 +100,8 @@ function M.unshuffle_music()
 end
 
 function M.queue_music()
+	local mpvc_command = mpvc_path .. [[ --fullplaylist | less]]
+	execute_command(mpvc_command)
 end
 
 return M

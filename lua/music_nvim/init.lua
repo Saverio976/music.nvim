@@ -52,12 +52,14 @@ function M.music_nvim_install()
 		error("'socat' is not installed; please install it")
 	end
 	if file_exists(mpvc_path) == false then
-		local http = require("socket.http")
-		local body, code = http.request("https://github.com/lwilletts/mpvc/blob/master/mpvc")
-		if not body then error(code) end
-		local f = assert(io.open(mpvc_path, 'wb'))
-		f:write(body)
-		f:close()
+		local url = 'https://raw.githubusercontent.com/lwilletts/mpvc/master/mpvc'
+		if vim.fn.executable('curl') == 1 then
+			os.execute('curl ' .. url .. ' > ' .. mpvc_path)
+		elseif vim.fn.executable('wget') == 1 then
+			os.execute('wget ' .. url .. ' -o ' .. mpvc_path)
+		else
+			error('please install curl or wget')
+		end
 	end
 end
 

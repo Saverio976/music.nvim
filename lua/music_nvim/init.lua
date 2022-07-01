@@ -1,5 +1,11 @@
 local string = require('string')
 local io = require('io')
+local os = require('os')
+
+local floaterm_command = [[FloatermNew --position=top --wintype=split --autoclose=1]]
+local mpv_ipc_path = "/tmp/mpvsocket"
+local socat_command = [[socat - "]] .. mpv_ipc_path .. '"'
+local mpvc_path = os.getenv('HOME') .. "/.local/bin/mpvc"
 
 local function file_exists(name)
 	local f = io.open(name,"r")
@@ -31,8 +37,25 @@ local function get_true_link(url)
 	return url
 end
 
+local function execute_command(command)
+	vim.cmd(floaterm_command .. " " .. command)
+end
+
 local M = {}
 M.__index = M
+
+function M.music_nvim_install()
+	if os.execute([[mpv --version]]) ~= true then
+		print("MPV is not installed; please install it")
+		return
+	end
+	local http = require("socket.http")
+	local body, code = http.request("https://github.com/lwilletts/mpvc/blob/master/mpvc")
+	if not body then error(code) end
+	local f = assert(io.open(mpvc_path, 'wb'))
+	f:write(body)
+	f:close()
+end
 
 function M.PlayMusicUrl(url)
 	url = url or ""
@@ -42,13 +65,37 @@ function M.PlayMusicUrl(url)
 		return
 	end
 	vim.notify('music will start in few seconds (' .. url .. ')')
-	local floaterm_command = [[FloatermNew --position=top --wintype=split --autoclose=1]]
-	local mpv_command = [[mpv --no-config --vo=tct --really-quiet --profile=sw-fast ']] .. url .. "'"
-	vim.cmd(floaterm_command .. " " .. mpv_command)
+	local mpv_print_option = [[--no-config --vo=tct --really-quiet --profile=sw-fast]]
+	local mpv_ipc_option = [[--input-ipc-server=]] .. mpv_ipc_path
+	local mpv_command = "mpv " .. mpv_print_option .. " " .. mpv_ipc_option .. " '" .. url .. "'"
+	execute_command(mpv_command)
 end
 
 function M.PlayMusic()
 	vim.ui.input("enter url (could be youtube music/playlist)", M.play_music_url)
+end
+
+function M.next_music()
+	local mpv_command = [[echo playlist-next force]]
+	execute_command(mpv_command .. ' | ' .. socat_command)
+end
+
+function M.previous_music()
+	local mpv_command = [[echo playlist-prev force]]
+	execute_command(mpv_command .. ' | ' .. socat_command)
+end
+
+function M.shuffle_music()
+	local mpv_command = [[echo playlist-shuffle]]
+	execute_command(mpv_command .. ' | ' .. socat_command)
+end
+
+function M.unshuffle_music()
+	local mpv_command = [[echo playlist-unshuffle]]
+	execute_command(mpv_command .. ' | ' .. socat_command)
+end
+
+function M.queue_music()
 end
 
 return M

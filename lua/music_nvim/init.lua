@@ -60,6 +60,7 @@ function M.music_nvim_install()
 		else
 			error('please install curl or wget')
 		end
+		os.execute('chmod +x ' .. mpvc_path)
 	end
 end
 

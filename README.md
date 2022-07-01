@@ -41,7 +41,7 @@ example with a youtube playlist
 ```lua
 use {
 	'Saverio976/music.nvim',
-	run = ':MusicInstall'
+	run = ':MusicInstall',
 	requires = { 'voldikss/vim-floaterm' }
 }
 ```

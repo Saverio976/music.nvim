@@ -103,6 +103,11 @@ function M.unshuffle_music()
 end
 
 function M.queue_music()
+	local mpvc_command = mpvc_path .. [[ --playlist | less]]
+	execute_command(mpvc_command)
+end
+
+function M.allplaylist_music()
 	local mpvc_command = mpvc_path .. [[ --fullplaylist | less]]
 	execute_command(mpvc_command)
 end

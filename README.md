@@ -25,14 +25,19 @@ example with a youtube playlist
 ![youtube_video_playing](/assets/youtube_playlist_playing.png)
 
 
-## installation
+## Installation
+
+- require
+
+1. mpv
 
 `this plugin require mpv executable installed and and discoverable in your PATH`
 `pacman -S mpv`
 `apt install mpv`
 
-- with packer
+- voldikss/vim-floaterm
 
+`with packer`
 ```lua
 use {
 	'Saverio976/music.nvim',
@@ -40,9 +45,11 @@ use {
 }
 ```
 
+- bonus
+
 you can look at https://github.com/rcarriga/nvim-notify for better notification (default is an echo)
 
-## command
+## Command
 
 - PlayMusic (path of file/folder)|(url link)
 
@@ -54,7 +61,7 @@ url = "https://youtu.be/1DoI5WTjd3w"
 require('music_nvim').PlayMusicUrl(url)
 ```
 
-## mpv interraction
+## Mpv Interraction
 
 - `p`
 
@@ -88,6 +95,6 @@ go to next music
 
 go to last music
 
-## thanks
+## Thanks
 
 repo archi: https://github.com/RishabhRD/nvim-cheat.sh

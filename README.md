@@ -41,6 +41,7 @@ example with a youtube playlist
 ```lua
 use {
 	'Saverio976/music.nvim',
+	run = ':MusicInstall'
 	requires = { 'voldikss/vim-floaterm' }
 }
 ```
@@ -51,17 +52,55 @@ you can look at https://github.com/rcarriga/nvim-notify for better notification 
 
 ## Command
 
-- PlayMusic (path of file/folder)|(url link)
-
+- **PlayMusic** (path of file/folder)|(url link)
+```vim
+command! -nargs=1 -complete=file PlayMusic lua require('music_nvim').PlayMusicUrl([[<args>]])
+```
 open a terminal and run mpv to get sound + video if video
 
-and there is a function for lua:
-```lua
-url = "https://youtu.be/1DoI5WTjd3w"
-require('music_nvim').PlayMusicUrl(url)
+- **MusicPlay** (path of file/folder)|(url link)
+```vim
+command! -nargs=1 -complete=file MusicPlay lua require('music_nvim').PlayMusicUrl([[<args>]])
 ```
+open a terminal and run mpv to get sound + video if video
 
-## Mpv Interraction
+- **MusicNext**
+```vim
+command! MusicNext lua require('music_nvim').next_music()
+```
+pass to the next music (or stop it if not a playlist)
+
+- **MusicPrev**
+```vim
+command! MusicPrev lua require('music_nvim').next_music()
+```
+pass to the previous music (if playlist)
+
+- **MusicShuffle**
+```vim
+command! MusicUnShuffle lua require('music_nvim').unshuffle_music()
+```
+shuffle the playlist
+
+-- **MusicUnShuffle**
+```vim
+command! MusicUnShuffle lua require('music_nvim').unshuffle_music()
+```
+unshuffle the playlist
+
+- **MusicQueue**
+```vim
+command! MusicQueue lua require('music_nvim').queue_music()
+```
+show queue
+
+- **MusicAllPlaylist**
+```vim
+command! MusicAllPlaylist lua require('music_nvim').allplaylist_music()
+```
+show all the play list
+
+## Mpv Interraction (in the splited terminal)
 
 - `p`
 

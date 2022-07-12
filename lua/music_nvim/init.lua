@@ -38,7 +38,10 @@ local function get_true_link(url)
 end
 
 local function execute_command(command)
-	vim.cmd(floaterm_command .. " " .. command)
+	local ok, _ = pcall(vim.cmd, floaterm_command .. " " .. command)
+	if ok == false then
+		vim.notify("mpv could not load")
+	end
 end
 
 local M = {}
@@ -68,11 +71,23 @@ function M.PlayMusicUrl(url)
 	url = url or ""
 	url = get_true_link(url)
 	if check_url_correct(url) == false then
-		vim.notify('url provided is not an url, or not point to music')
-		return
+		url = '"ytdl://ytsearch:' .. url .. '"'
 	end
 	vim.notify('music will start in few seconds (' .. url .. ')')
-	local mpv_print_option = [[--no-config --vo=tct --really-quiet --profile=sw-fast]]
+	local mpv_print_option = [[--no-config --profile=sw-fast --ytdl-format=bestaudio --no-video]]
+	local mpv_ipc_option = [[--input-ipc-server=]] .. mpv_ipc_path
+	local mpv_command = "mpv " .. mpv_print_option .. " " .. mpv_ipc_option .. " '" .. url .. "'"
+	execute_command(mpv_command)
+end
+
+function M.PlayMusicVideoUrl(url)
+	url = url or ""
+	url = get_true_link(url)
+	if check_url_correct(url) == false then
+		url = '"ytdl://ytsearch:' .. url .. '"'
+	end
+	vim.notify('music will start in few seconds (' .. url .. ')')
+	local mpv_print_option = [[--no-config --vo=tct --really-quiet --profile=sw-fast --ytdl-format=bestvideo]]
 	local mpv_ipc_option = [[--input-ipc-server=]] .. mpv_ipc_path
 	local mpv_command = "mpv " .. mpv_print_option .. " " .. mpv_ipc_option .. " '" .. url .. "'"
 	execute_command(mpv_command)

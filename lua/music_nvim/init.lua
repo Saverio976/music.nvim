@@ -71,7 +71,7 @@ function M.PlayMusicUrl(url)
 	url = url or ""
 	url = get_true_link(url)
 	if check_url_correct(url) == false then
-		url = '"ytdl://ytsearch:' .. url .. '"'
+		url = 'ytdl://ytsearch:' .. url
 	end
 	vim.notify('music will start in few seconds (' .. url .. ')')
 	local mpv_print_option = [[--no-config --profile=sw-fast --ytdl-format=bestaudio --no-video]]
@@ -84,7 +84,7 @@ function M.PlayMusicVideoUrl(url)
 	url = url or ""
 	url = get_true_link(url)
 	if check_url_correct(url) == false then
-		url = '"ytdl://ytsearch:' .. url .. '"'
+		url = 'ytdl://ytsearch:' .. url
 	end
 	vim.notify('music will start in few seconds (' .. url .. ')')
 	local mpv_print_option = [[--no-config --vo=tct --really-quiet --profile=sw-fast --ytdl-format=bestvideo]]

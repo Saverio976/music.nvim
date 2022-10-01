@@ -2,8 +2,6 @@
 
 play music/video in neovim using mpv
 
-[[TOC]]
-
 ## Installation
 
 - require

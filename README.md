@@ -2,23 +2,35 @@
 
 play music/video in neovim using mpv
 
+[[TOC]]
+
 ## Installation
 
 - require
 
-1. mpv
+1. [mpv](https://mpv.io/)
 
-`this plugin require mpv executable installed and discoverable in your PATH`
-`pacman -S mpv`
-`apt install mpv`
+**this plugin require mpv executable installed and discoverable in your PATH**
 
-2. [https://github.com/voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm)
+- `pacman -S mpv`
+- `apt install mpv`
+- ...
 
-see its github readme for how to install it on your neovim config
+2. [socat](http://www.dest-unreach.org/socat/) (interraction with mpv while playing playlist/music)
 
-3. bonus
+- `pacman -S socat`
+- `apt install socat`
+- ...
 
-you can look at [https://github.com/rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify) for better notification (default is an echo)
+3. [voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm) (to run mpv)
+
+see its github readme for how to install it on your neovim config ([voldikss/vim-floaterm](https://github.com/voldikss/vim-floaterm))
+
+4. bonus
+
+- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify) for better notification (default is an echo)
+
+5. and, the plugin:
 
 - with packer
 
@@ -68,7 +80,7 @@ command! MusicUnShuffle lua require('music_nvim').unshuffle_music()
 ```
 shuffle the playlist
 
--- **MusicUnShuffle**
+- **MusicUnShuffle**
 ```vim
 command! MusicUnShuffle lua require('music_nvim').unshuffle_music()
 ```
@@ -86,7 +98,7 @@ command! MusicAllPlaylist lua require('music_nvim').allplaylist_music()
 ```
 show all the play list
 
-## Mpv Interraction (in the splited terminal)
+## Mpv Interraction (in the splited terminal) (`man mpv` for better info)
 <details>
   <summary>click to see mpv basic interraction in the floating terminal</summary>
 
@@ -126,7 +138,7 @@ go to last music
 
 ## Thanks
 
-- repo archi for a plugin: [nvim-cheat.sh](https://github.com/RishabhRD/nvim-cheat.sh)
+- repo archi for a plugin: [RishabhRD/nvim-cheat.sh](https://github.com/RishabhRD/nvim-cheat.sh)
 
 - play sound / video: [mpv](https://mpv.io/)
 

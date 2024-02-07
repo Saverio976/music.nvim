@@ -1,5 +1,8 @@
 # music.nvim
 
+> [!IMPORTANT]  
+> I don't take time to update this, give a look at <https://github.com/tamton-aquib/mpv.nvim>
+
 play music/video in neovim using mpv
 
 ## Installation
